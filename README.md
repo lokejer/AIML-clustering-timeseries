@@ -43,7 +43,7 @@ The dataset has 200 mall customer records with 5 features: CustomerID, Gender, A
 
 EDA revealed that `How Much They Spend` is an engineered spending score, not raw expenditure — an important distinction for interpretation. Distributions, correlation heatmaps, and pairplots were used to understand feature relationships before modelling.
 
-![alt text](image.png)
+![alt text](assets/image.png)
 
 ---
 
@@ -73,7 +73,7 @@ Five methods were run in parallel to determine the optimal number of clusters:
 
 All five methods agreed — **optimal k = 6**.
 
-![alt text](image-1.png)
+![alt text](assets/image-1.png)
 
 ---
 
@@ -89,7 +89,7 @@ KMeans and Agglomerative Clustering (with dendrogram analysis) were compared acr
 
 **KMeans won across all three.** Final clusters were visualised with both PCA and t-SNE (multiple perplexity/learning rate permutations tested).
 
-![alt text](image-2.png)
+![alt text](assets/image-2.png)
 
 ---
 
@@ -124,7 +124,7 @@ Transformations applied before modelling:
 | Water | Minimal (Prophet handles this internally) |
 | Gas | Box-Cox + first-order + seasonal differencing |
 
-![alt text](image-3.png)
+![alt text](assets/image-3.png)
 
 ---
 
@@ -170,17 +170,17 @@ GridSearch hyperparameter tuning was then applied to finalise parameters.
 
 60-month future forecasts were generated for all three utilities, with inverse transforms applied to return predictions to original scale.
 
-![alt text](image-5.png)
+![alt text](assets/image-5.png)
 
-![alt text](image-6.png)
+![alt text](assets/image-6.png)
 
-![alt text](image-7.png)
+![alt text](assets/image-7.png)
 
-| Utility | Model | Test MAPE |
+| Utility | Model | Test RMSE |
 |---|---|---|
-| Electricity | SARIMA `(0,1,3)(0,1,3,12)` | 0.38% |
-| Water | Prophet | — |
-| Gas | SARIMAX | — |
+| Electricity | SARIMAX `(0,1,1)(0,1,2,12)` | 0.0246 (log-scale) |
+| Water | Prophet | 108.1 (raw-scale) |
+| Gas | SARIMAX `(2,1,2)(1,1,1,12)` | 1.87 (Box-Cox scale) |
 
 ---
 
